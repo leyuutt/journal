@@ -34,7 +34,7 @@
     <button class="tab-btn" data-tab="motivation"><span class="tab-dot" style="background:#db2777"></span>Motivation</button>
     <button class="tab-btn" data-tab="knowledge"><span class="tab-dot" style="background:#6d28d9"></span>Knowledge</button>
     <button class="tab-btn" data-tab="calculator"><span class="tab-dot" style="background:#2563eb"></span>Risk Calculator</button>
-    <button class="tab-btn" data-tab="setup"><span class="tab-dot" style="background:#16a34a"></span>Setup Guide</button>
+   
   </nav>
   <div class="hdr-actions">
     <button class="btn-primary" id="new-trade-btn">+ Log Trade</button>
@@ -195,60 +195,8 @@
   </div>
 </div>
 
-<!-- ══ SETUP GUIDE PAGE ══ -->
-<div class="page" id="page-setup">
-  <div class="card mb16" style="border-top:4px solid #16a34a;padding:20px 22px;">
-    <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
-      <div style="font-size:36px;">🛠</div>
-      <div>
-        <h2 style="font-family:'Fraunces',serif;font-style:italic;font-size:20px;font-weight:600;">Setup Guide</h2>
-        <p style="font-size:13px;color:var(--ink2);margin-top:4px;">Everything you need to put this journal online and turn on the AI features. Two parts, fully self-contained — no separate files to manage.</p>
-      </div>
-    </div>
-  </div>
 
-  <div class="card mb16">
-    <p style="font-size:13px;color:var(--ink2);line-height:1.6;">
-      <strong style="color:var(--ink);">Part 1</strong> gets your journal live on your own domain. <strong style="color:var(--ink);">Part 2</strong> connects the AI backend so AI quotes work on that live site. You can stop after Part 1 — everything else in the journal already works with no setup at all.
-    </p>
-  </div>
 
-  <div class="card mb16" style="border-top:4px solid var(--accent)">
-    <div class="card-title" style="border-left-color:var(--accent)">Part 1 — Put Your Journal Online</div>
-    <div class="setup-step"><span class="setup-num">1</span><div><strong>Create a free Netlify account</strong><br>Go to <code>netlify.com</code> and sign up. No credit card needed.</div></div>
-    <div class="setup-step"><span class="setup-num">2</span><div><strong>Upload this file</strong><br>Go to <code>app.netlify.com/drop</code> and drag this very HTML file onto the page. Netlify gives you a live link instantly, like <code>random-name.netlify.app</code> — click it, your journal is now on the internet.</div></div>
-    <div class="setup-step"><span class="setup-num">3</span><div><strong>Buy your domain</strong><br>Go to <code>namecheap.com</code>, search <code>nikotradingjournal.com</code>, and buy it (usually $10–15/year).</div></div>
-    <div class="setup-step"><span class="setup-num">4</span><div><strong>Connect domain to site</strong><br>In Netlify: your site → <em>Domain settings</em> → <em>Add a domain</em> → type your domain. Netlify shows you some DNS records. Go to Namecheap → your domain → <em>Advanced DNS</em> → add the records Netlify showed you. Wait up to a few hours for it to activate.</div></div>
-    <div style="background:var(--win-bg);border-radius:10px;padding:14px;margin-top:6px;font-size:13px;color:var(--win);font-weight:600;">✓ Done. Visit your domain — trades, calendar, calculator, knowledge base, and backup/restore all work immediately.</div>
-  </div>
-
-  <div class="card mb16" style="border-top:4px solid var(--blue)">
-    <div class="card-title" style="border-left-color:var(--blue)">Part 2 — Connect the AI Backend</div>
-    <p style="font-size:12.5px;color:var(--ink2);margin-bottom:14px;">This turns on unlimited AI quotes on your live site. The backend code is built into this journal — just download it below.</p>
-
-    <div class="setup-step"><span class="setup-num">1</span><div><strong>Get an Anthropic API key</strong><br>Go to <code>console.anthropic.com</code> → API Keys → Create Key. Copy it immediately (starts with <code>sk-ant-...</code>) — you won't be able to see it again later.</div></div>
-    <div class="setup-step"><span class="setup-num">2</span><div><strong>Create a free Cloudflare account</strong><br>Go to <code>dash.cloudflare.com/sign-up</code>.</div></div>
-    <div class="setup-step"><span class="setup-num">3</span><div><strong>Create a Worker</strong><br>Workers & Pages → Create → Create Worker. Name it anything, e.g. <code>niko-ai-proxy</code>. Click Deploy.</div></div>
-    <div class="setup-step"><span class="setup-num">4</span><div><strong>Paste in the backend code</strong><br>Click <em>Edit code</em>, delete the default template, and paste in the code below. Click Deploy.<br>
-      <button class="btn-sm" id="download-worker-btn" style="margin-top:10px;">⬇ Download Worker Code File</button>
-      <button class="btn-sm" id="copy-worker-btn" style="margin-top:10px;background:var(--blue);">📋 Copy Code to Clipboard</button>
-      <span id="copy-worker-status" style="font-size:12px;color:var(--win);margin-left:8px;"></span>
-    </div></div>
-    <div class="setup-step"><span class="setup-num">5</span><div><strong>Add your API key securely</strong><br>Worker → Settings → Variables and Secrets → Add → type: Secret. Name it exactly <code>ANTHROPIC_API_KEY</code>, paste your key as the value. Save and Deploy.</div></div>
-    <div class="setup-step"><span class="setup-num">6</span><div><strong>Copy your Worker's URL</strong><br>It looks like <code>https://niko-ai-proxy.yoursubdomain.workers.dev</code></div></div>
-    <div class="setup-step"><span class="setup-num">7</span><div><strong>Connect it here</strong><br>Scroll to the footer of this journal → click <strong>⚙ AI Backend</strong> → paste your Worker URL → Test Connection → Save.</div></div>
-    <div style="background:var(--win-bg);border-radius:10px;padding:14px;margin-top:6px;font-size:13px;color:var(--win);font-weight:600;">✓ Done. Refresh the page — AI quotes now work on your live site.</div>
-  </div>
-
-  <div class="card">
-    <div class="card-title" style="border-left-color:var(--loss)">If Something Doesn't Work</div>
-    <div style="font-size:12.5px;color:var(--ink2);line-height:1.8;">
-      <strong style="color:var(--ink);">"Test Connection" shows an error</strong> — double check the Worker URL was copied exactly with no extra spaces, and that you clicked Deploy after pasting the code.<br>
-      <strong style="color:var(--ink);">Error mentioning the API key</strong> — go back to Cloudflare → Settings → Variables and Secrets → confirm <code>ANTHROPIC_API_KEY</code> is spelled exactly right.<br>
-      <strong style="color:var(--ink);">Domain not loading after a few hours</strong> — DNS changes can take up to 24-48 hours. Double-check the records in Namecheap match what Netlify asked for.
-    </div>
-  </div>
-</div>
 
 <!-- DRAWER -->
 <div class="overlay" id="overlay" style="display:none">
